@@ -15,8 +15,40 @@
  */
 
 @layer base {
+  label {
+    @apply font-handwriting text-xl uppercase tracking-tighter;
+  }
+
+  label:has(+ input:placeholder-shown) {
+    @apply pointer-events-none absolute left-8 top-8 text-3xl transition-all duration-300;
+  }
+
+  label:has(+ input:focus),
+  label:has(+ input) {
+    @apply absolute left-2 top-2 text-xl;
+  }
+
+  input[type='text'],
+  input[type='password'],
+  input[type='url'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='email'] {
+    @apply h-[100px] w-full px-7 font-sans text-2xl;
+  }
+
   svg {
     @apply fill-current;
+  }
+
+  /* invalid label */
+  label:has(+ input:invalid:not(:placeholder-shown)) {
+    @apply text-white;
+  }
+
+  /* valid label */
+  input invalid:not(:placeholder-shown) {
+    @apply border-fireEngineRed bg-orangeRed;
   }
 }
 
